@@ -18,7 +18,12 @@ I am using NPartition to provide an extremely lightweight Kafka like producer pa
 
 ## Usage Example
 
-Lets say you have a 500 telemetry devices and you want to process or re-process information as quickly as possible. The best idea would be to use Azure Event Hubs or Amazon Kinesis. If you cannot use these services then install NPartition on your main processing server or run it on a small linux box using Mono. Use the NPartition.Client library and ensure you include Json.net from Nuget or your own source. In your processing code you could partition the items you need to process by the telemetry device id, perhaps this is the IMEI or another unique identifier. Once you have this done you can utilise the code in NPartition.Processing as a base to setup the processing of your partitioned items. Each partition is capable of executing items continuously one by one, or if you care to write more complex code you could process all items in a partition. NPartition does not store the items you need to process.
+Lets say you have a 500 telemetry devices and you want to process or re-process information as quickly as possible. The best idea would be to use Azure Event Hubs or Amazon Kinesis. If you cannot use these services then install NPartition on your main processing server or run it on a small linux box using Mono. 
+
+Use the NPartition.Client library and ensure you include Json.net from Nuget or your own source. <br/>
+In your processing code you could partition the items you need to process by the telemetry device id, perhaps this is the IMEI or another unique identifier. Once you have this done you can utilise the code in NPartition.Processing as a base to setup the processing of your partitioned items. Each partition is capable of executing items continuously one by one, or if you care to write more complex code you could process all items in a partition. NPartition does not store the items you need to process.
+
+![Overview](http://i.imgur.com/jhnLvrK.png)
 
 ## Requirements
 
