@@ -1,6 +1,6 @@
 ## NPartition : Split up your workload
 
-NPartition is a simple persistent producer partition cache. What does that mean? Well it means it remembers what partition a producer belongs to and allows you to silo your workload into multiple partitions to avoid any multi-threaded headaches or concurrency issues. NPartition does not store any events or items that require processing, rather it acts as a persistent store of the partition each item belongs to.
+NPartition is a simple persistent producer partition cache. What does that mean? Well it means it remembers what partition a producer belongs to and allows you to silo your workload into multiple partitions to avoid any multi-threaded headaches or concurrency issues. NPartition does not store any events or items that require processing, rather it acts as a persistent store of the partition number each item belongs to.
 
 ## Rationale
 
@@ -24,6 +24,26 @@ Use the NPartition.Client library and ensure you include Json.net from Nuget or 
 In your processing code you could partition the items you need to process by the telemetry device id, perhaps this is the IMEI or another unique identifier. Once you have this done you can utilise the code in NPartition.Processing as a base to setup the processing of your partitioned items. Each partition is capable of executing items continuously one by one, or if you care to write more complex code you could process all items in a partition. NPartition does not store the items you need to process.
 
 ![Overview](http://i.imgur.com/jhnLvrK.png)
+
+## Client Usage
+
+```c#
+var topic = "mybackgroundprocessor";
+
+var partitionClient = new NPartitionClient(); // Overload for custom URI
+
+// Determine if the topic exists. Topics are created with a default of 16 partitions
+// You will be surprised how well just 16 partitions will improve processing throughput
+var topicExists = await partitionClient.TopicExists(topic);
+if (!topicExists) {
+	await partitionClient.AddTopic(topic);
+}
+// Add a producer to topic with key of the person number
+// The producer name must be something that you aggregate in your processing code
+// or the producer name can be a Guid or Integer ie. a primary key from a database.
+var partition = await partitionClient.AddProducer(topic, person.PersonNumber);
+
+```
 
 ## Requirements
 
