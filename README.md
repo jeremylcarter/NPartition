@@ -10,11 +10,11 @@ I am using NPartition to provide an extremely lightweight Kafka like producer pa
 
 ## Terms
 
-Producer 			: An entity, device or any unique identifier that whereby work is aggregated.<br/>
-Partition			: A group of Producers that are assigned a unique integer for their lifetime.<br/>
-Topic				: A group of Partitions. A topic is named using a lowercase culture invariant string.<br/>
-Topic Coordinator 	: Manages a topic and assigns producers to partitions based on a partition with the lowest producer count value.<br/>
-Coordinator			: Manages multiple Topic Coordinators<br/>
+*Producer* 			: An entity, device or any unique identifier that whereby work is aggregated.<br/>
+*Partition*			: A group of Producers that are assigned a unique integer for their lifetime.<br/>
+*Topic*				: A group of Partitions. A topic is named using a lowercase culture invariant string.<br/>
+*Topic Coordinator* : Manages a topic and assigns producers to partitions based on a partition with the lowest producer count value.<br/>
+*Coordinator*		: Manages multiple Topic Coordinators<br/>
 
 ## Usage Example
 
